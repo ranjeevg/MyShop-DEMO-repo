@@ -8,18 +8,10 @@ using System.Threading.Tasks;
 
 namespace MyShop.Core.Models
 {
-    public class Product
+    public class Product : BaseEntity
     {
         // so THAT's what was wrong! This guy never got a GUID because 
         // I forgot to add in the bloody constructor!
-
-        // well, here goes:
-        public Product()
-        {
-            this.ID = Guid.NewGuid().ToString();
-        }
-
-        public string ID { get; set; }
 
         [Required]
         [DisplayName("Product Name")]
