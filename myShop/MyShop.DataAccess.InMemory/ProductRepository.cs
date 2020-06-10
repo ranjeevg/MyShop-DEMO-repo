@@ -39,7 +39,7 @@ namespace MyShop.DataAccess.InMemory
 
         public Product Find(string ID)
         {
-            Product product = products.Find(x => x.ID == ID);
+            Product product = products.FirstOrDefault(x => x.ID == ID);
             if (product is null) throw new Exception("Product not found");
 
             return product;
