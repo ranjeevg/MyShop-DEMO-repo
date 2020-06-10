@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace MyShop.DataAccess.InMemory
 {
     // note to self: this is how you use generic class templates in C#
+    // the 'where' keyword is how you constrain the template T
     public class InMemoryRepository<T> where T : BaseEntity
     {
         ObjectCache cache = MemoryCache.Default;
