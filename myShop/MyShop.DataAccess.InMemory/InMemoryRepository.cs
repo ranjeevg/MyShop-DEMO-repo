@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyShop.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Caching;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace MyShop.DataAccess.InMemory
 {
     // note to self: this is how you use generic class templates in C#
-    public class InMemoryRepository<T>
+    public class InMemoryRepository<T> where T : BaseEntity
     {
         ObjectCache cache = MemoryCache.Default;
         // list of this generic type
