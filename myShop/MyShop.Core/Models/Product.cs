@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -9,17 +10,17 @@ namespace MyShop.Core.Models
 {
     public class Product
     {
-        public Product()
-        {
-            this.ID = Guid.NewGuid().ToString();
-        }
         public string ID { get; set; }
-        [StringLength(20)]
+
+        [Required]
+        [DisplayName("Product Name")]
+        [StringLength(20, ErrorMessage = "The product's name can be 20 " +
+            "characters long, at most.")]
         public string Name { get; set; }
         public string Description { get; set; }
-        public decimal Price { get; set; }
         public string Category { get; set; }
-        // this will contain a URL to the image
+        [Range(0, 1000)]
+        public decimal Price { get; set; }
         public string Image { get; set; }
     }
 }
