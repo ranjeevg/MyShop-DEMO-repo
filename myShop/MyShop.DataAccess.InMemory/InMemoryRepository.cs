@@ -1,4 +1,5 @@
-﻿using MyShop.Core.Models;
+﻿using MyShop.Core.Contracts;
+using MyShop.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace MyShop.DataAccess.InMemory
 {
     // note to self: this is how you use generic class templates in C#
     // the 'where' keyword is how you constrain the template T
-    public class InMemoryRepository<T> where T : BaseEntity
+    public class InMemoryRepository<T> : IRepository<T> where T : BaseEntity
     {
         ObjectCache cache = MemoryCache.Default;
         // list of this generic type
@@ -28,7 +29,7 @@ namespace MyShop.DataAccess.InMemory
 
         public void Insert(T t) { items.Add(t); }
 
-        public void Update(T t) 
+        public void Update(T t)
         {
             T tToUpdate = items.Find(i => i.ID == t.ID);
             if (tToUpdate == null) // apparently the 'is' keyword doesn't work with generics
@@ -36,7 +37,7 @@ namespace MyShop.DataAccess.InMemory
             tToUpdate = t;
         }
 
-        public T Find (string ID)
+        public T Find(string ID)
         {
             T t = items.Find(i => i.ID == ID);
             if (t == null) // apparently the 'is' keyword doesn't work with generics
@@ -46,7 +47,7 @@ namespace MyShop.DataAccess.InMemory
 
         public IQueryable<T> Collection() { return items.AsQueryable(); }
 
-        public void Delete (string ID)
+        public void Delete(string ID)
         {
             T tToDelete = items.Find(i => i.ID == ID);
             if (tToDelete == null) // apparently the 'is' keyword doesn't work with generics

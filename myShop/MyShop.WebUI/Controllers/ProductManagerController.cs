@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MyShop.Core.Contracts;
 using MyShop.Core.Models;
 using MyShop.Core.ViewModels;
 using MyShop.DataAccess.InMemory;
@@ -12,12 +13,17 @@ namespace MyShop.WebUI.Controllers
     public class ProductManagerController : Controller
     {
         #region constructor
-        InMemoryRepository<Product> context;
-        InMemoryRepository<ProductCategory> productCategories;
-        public ProductManagerController()
+        IRepository<Product> context;
+        IRepository<ProductCategory> productCategories;
+
+        // adding these interfaces in the controller 'hooks them up' to our properties,
+        // and the computer does the hard work of connecting them to a class 
+        // that implements said interface
+        public ProductManagerController(IRepository<Product> ProductContext, 
+            IRepository<ProductCategory> ProductCategoryContext)
         {
-            context = new InMemoryRepository<Product>();
-            productCategories = new InMemoryRepository<ProductCategory>();
+            this.context = ProductContext;
+            this.productCategories = ProductCategoryContext;
         }
         #endregion
         #region index

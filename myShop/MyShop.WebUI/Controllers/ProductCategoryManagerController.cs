@@ -1,4 +1,5 @@
-﻿using MyShop.Core.Models;
+﻿using MyShop.Core.Contracts;
+using MyShop.Core.Models;
 using MyShop.DataAccess.InMemory;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,13 @@ namespace MyShop.WebUI.Controllers
     public class ProductCategoryManagerController : Controller
     {
         #region constructor
-        InMemoryRepository<ProductCategory> context;
-        public ProductCategoryManagerController()
+        IRepository<ProductCategory> context;
+        // by dealing with interfaces, we can swap stuff out with ease. We pass interfaces 
+        // to the constructor to make the compiler do the hard work of finding an appropriate class 
+        // to load from
+        public ProductCategoryManagerController(IRepository<ProductCategory> ProductCategoryContext)
         {
-            context = new InMemoryRepository<ProductCategory>();
+            this.context = ProductCategoryContext;
         }
         #endregion
         #region index
