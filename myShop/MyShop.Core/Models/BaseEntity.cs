@@ -8,12 +8,12 @@ namespace MyShop.Core.Models
 {
     public abstract class BaseEntity
     {
-        public string ID;
+        public string Id;
         public DateTime CreatedAt;
 
         public BaseEntity()
         {
-            ID = Guid.NewGuid().ToString();
+            Id = Guid.NewGuid().ToString();
             CreatedAt = DateTime.Now;
         }
     }

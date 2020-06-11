@@ -49,17 +49,17 @@ namespace MyShop.WebUI.Controllers
         }
         #endregion
         #region Edit endpoints
-        public ActionResult Edit(string ID)
+        public ActionResult Edit(string Id)
         {
-            ProductCategory productCategory = context.Find(ID);
+            ProductCategory productCategory = context.Find(Id);
             if (productCategory is null) return HttpNotFound();
             return View(productCategory);
         }
 
         [HttpPost]
-        public ActionResult Edit(ProductCategory productCategory, string ID)
+        public ActionResult Edit(ProductCategory productCategory, string Id)
         {
-            ProductCategory productCategoryToEdit = context.Find(ID);
+            ProductCategory productCategoryToEdit = context.Find(Id);
             if (productCategoryToEdit is null) return HttpNotFound();
             if (!ModelState.IsValid) return View(productCategory);
 
@@ -70,9 +70,9 @@ namespace MyShop.WebUI.Controllers
         }
         #endregion
         #region Delete endpoints
-        public ActionResult Delete(string ID)
+        public ActionResult Delete(string Id)
         {
-            ProductCategory productCategoryToDelete = context.Find(ID);
+            ProductCategory productCategoryToDelete = context.Find(Id);
             if (productCategoryToDelete is null) return HttpNotFound();
 
             return View(productCategoryToDelete);
@@ -81,12 +81,12 @@ namespace MyShop.WebUI.Controllers
         // remember that we renamed this one in the previous example
         [HttpPost]
         [ActionName("Delete")]
-        public ActionResult ConfirmDelete(string ID)
+        public ActionResult ConfirmDelete(string Id)
         {
-            ProductCategory productCategoryToDelete = context.Find(ID);
+            ProductCategory productCategoryToDelete = context.Find(Id);
             if (productCategoryToDelete is null) return HttpNotFound();
 
-            context.Delete(ID);
+            context.Delete(Id);
             context.Commit(); // save these changes
             return RedirectToAction("Index");
         }

@@ -56,9 +56,9 @@ namespace MyShop.WebUI.Controllers
         }
         #endregion
         #region Edit endpoints
-        public ActionResult Edit(string ID)
+        public ActionResult Edit(string Id)
         {
-            Product product = context.Find(ID);
+            Product product = context.Find(Id);
             if (product is null) return HttpNotFound();
 
             ProductManagerViewModel viewModel = new ProductManagerViewModel();
@@ -69,9 +69,9 @@ namespace MyShop.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Product product, string ID)
+        public ActionResult Edit(Product product, string Id)
         {
-            Product productToEdit = context.Find(ID);
+            Product productToEdit = context.Find(Id);
             if (productToEdit is null) return HttpNotFound();
             else
             {
@@ -89,9 +89,9 @@ namespace MyShop.WebUI.Controllers
         }
         #endregion
         #region Delete endpoints
-        public ActionResult Delete(string ID)
+        public ActionResult Delete(string Id)
         {
-            Product productToDelete = context.Find(ID);
+            Product productToDelete = context.Find(Id);
             if (productToDelete is null) return HttpNotFound();
 
             return View(productToDelete);
@@ -100,12 +100,12 @@ namespace MyShop.WebUI.Controllers
         // remember that we renamed this one in the previous example
         [HttpPost]
         [ActionName("Delete")]
-        public ActionResult ConfirmDelete(string ID)
+        public ActionResult ConfirmDelete(string Id)
         {
-            Product productToDelete = context.Find(ID);
+            Product productToDelete = context.Find(Id);
             if (productToDelete is null) return HttpNotFound();
 
-            context.Delete(ID);
+            context.Delete(Id);
             context.Commit(); // save these changes
             return RedirectToAction("Index");
         }

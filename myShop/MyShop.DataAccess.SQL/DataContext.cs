@@ -10,8 +10,11 @@ namespace MyShop.DataAccess.SQL
 {
     public class DataContext : DbContext
     {
-        public DataContext() : base("DefaultConnection") { } // this means that it looks in the DefaultConnection
-                                                             // string that we edited in Web.Config
+        public DataContext() : base("DefaultConnection") 
+        {
+            // holder
+        } 
+        // this means that it looks in the DefaultConnection string that we edited in Web.Config
 
         // DbSet is a generic defined in System.Data.Entity
         public DbSet<Product> Products { get; set; }

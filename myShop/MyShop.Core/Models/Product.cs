@@ -10,9 +10,6 @@ namespace MyShop.Core.Models
 {
     public class Product : BaseEntity
     {
-        // so THAT's what was wrong! This guy never got a GUID because 
-        // I forgot to add in the bloody constructor!
-
         [Required]
         [DisplayName("Product Name")]
         [StringLength(20, ErrorMessage = "The product's name can be 20 " +
