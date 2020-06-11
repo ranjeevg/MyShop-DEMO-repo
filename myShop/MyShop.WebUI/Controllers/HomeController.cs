@@ -1,5 +1,6 @@
 ﻿using MyShop.Core.Contracts;
 using MyShop.Core.Models;
+using MyShop.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +26,27 @@ namespace MyShop.WebUI.Controllers
             this.productCategories = ProductCategoryContext;
         }
         #endregion
-        public ActionResult Index()
+        // the purpose of 'string s = null' is to declare the string input as optional.
+        // if it's present, then great; if it isn't, then that's fine too.
+        public ActionResult Index(string Category = null)
         {
             List<Product> products = context.Collection().ToList();
-            return View(products);
+            List<ProductCategory> categories = productCategories.Collection().ToList();
+
+            if (Category is null)
+                context.Collection().ToList();
+            else
+            {
+                // the reason we defined the product list as an IQueryable is so 
+                // that we can sort its values using the Where() method and lambda syntax.
+                products = context.Collection().Where
+                    (p => p.Category == Category).ToList(); ;
+            }
+
+            ProductListViewModel model = new ProductListViewModel();
+            model.Products = products;
+            model.ProductCategories = categories;
+            return View(model);
         }
 
         public ActionResult About()
