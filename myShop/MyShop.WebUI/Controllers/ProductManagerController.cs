@@ -17,8 +17,8 @@ namespace MyShop.WebUI.Controllers
         IRepository<ProductCategory> productCategories;
 
         // adding these interfaces in the controller 'hooks them up' to our properties,
-        // and the computer does the hard work of connecting them to a class 
-        // that implements said interface
+        // and the dependency injection containter (AKA DI container) does the hard work 
+        // of connecting them to a class that implements said interface
         public ProductManagerController(IRepository<Product> ProductContext, 
             IRepository<ProductCategory> ProductCategoryContext)
         {
