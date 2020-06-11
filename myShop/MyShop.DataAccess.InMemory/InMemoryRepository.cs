@@ -31,15 +31,15 @@ namespace MyShop.DataAccess.InMemory
 
         public void Update(T t)
         {
-            T tToUpdate = items.Find(i => i.ID == t.ID);
+            T tToUpdate = items.Find(i => i.Id == t.Id);
             if (tToUpdate == null) // apparently the 'is' keyword doesn't work with generics
                 throw new Exception(className + " not found");
             tToUpdate = t;
         }
 
-        public T Find(string ID)
+        public T Find(string Id)
         {
-            T t = items.Find(i => i.ID == ID);
+            T t = items.Find(i => i.Id == Id);
             if (t == null) // apparently the 'is' keyword doesn't work with generics
                 throw new Exception(className + " not found");
             return t;
@@ -47,9 +47,9 @@ namespace MyShop.DataAccess.InMemory
 
         public IQueryable<T> Collection() { return items.AsQueryable(); }
 
-        public void Delete(string ID)
+        public void Delete(string Id)
         {
-            T tToDelete = items.Find(i => i.ID == ID);
+            T tToDelete = items.Find(i => i.Id == Id);
             if (tToDelete == null) // apparently the 'is' keyword doesn't work with generics
                 throw new Exception(className + " not found");
             items.Remove(tToDelete);

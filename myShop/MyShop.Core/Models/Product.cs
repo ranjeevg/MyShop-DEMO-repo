@@ -10,7 +10,6 @@ namespace MyShop.Core.Models
 {
     public class Product : BaseEntity
     {
-        [Required]
         [DisplayName("Product Name")]
         [StringLength(20, ErrorMessage = "The product's name can be 20 " +
             "characters long, at most.")]
@@ -20,5 +19,8 @@ namespace MyShop.Core.Models
         [Range(0, 1000)]
         public decimal Price { get; set; }
         public string Image { get; set; }
+
+        // forgot the goddamn constructor again
+        public Product() { this.Id = Guid.NewGuid().ToString(); }
     }
 }
