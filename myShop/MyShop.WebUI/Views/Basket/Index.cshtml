@@ -26,7 +26,7 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td><img class="img-thumbnail" src="~/Content/ProductImages/@item.Image"/></td>
+        <td><img class="img-thumbnail" style="height:50px" src="~/Content/ProductImages/@item.Image"/></td>
         <td>
             @Html.DisplayFor(modelItem => item.ProductName)
         </td>
@@ -48,7 +48,7 @@
 }
     <tr>
         <td colspan="4" style="text-align:right"><strong>Basket Total</strong></td>
-        <td>@String.Format("{0:c}", (from p in Model select p.Price * p.Quantity).Sum,()) </td>
+        <td>@String.Format("{0:c}", (from p in Model select p.Price * p.Quantity).Sum()) </td>
     </tr>
 
 </table>

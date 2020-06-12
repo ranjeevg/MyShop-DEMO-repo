@@ -27,6 +27,9 @@
                     <li><a href="https://www.arrow.ca"><img class="img-rounded" src="~/Content/CompanyLogo.jpg" style="height:30px"></a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
+                @{ 
+                    Html.RenderAction("BasketSummary", "Basket");
+                }
             </div>
         </div>
     </div>
