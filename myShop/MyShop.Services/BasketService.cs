@@ -129,8 +129,6 @@ namespace MyShop.Services
             model.BasketTotal = basketTotal ?? decimal.Zero;
 
             return model;
-
-
         }
     }
 }
